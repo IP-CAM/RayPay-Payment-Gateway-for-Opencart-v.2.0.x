@@ -205,13 +205,17 @@ class ControllerPaymentRayPay extends Controller
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 
-		if (!$this->request->post['raypay_user_id'] || !$this->request->post['raypay_marketing_id']) {
+        if (!$this->request->post['raypay_user_id']) {
 
-			$this->error['warning'] = $this->language->get('error_validate');
-			$this->error['user_id'] = $this->language->get('error_user_id');
-			$this->error['marketing_id'] = $this->language->get('error_marketing_id');
-		}
+            $this->error['warning'] = $this->language->get('error_validate');
+            $this->error['user_id'] = $this->language->get('error_user_id');
+        }
+        if (!$this->request->post['raypay_marketing_id']) {
 
+            $this->error['warning'] = $this->language->get('error_validate');
+            $this->error['marketing_id'] = $this->language->get('error_marketing_id');
+        }
+        
 		if (!$this->error) {
 
 			return true;
