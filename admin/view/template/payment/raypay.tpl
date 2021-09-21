@@ -56,12 +56,22 @@
                 </div>
               </div>
               <div class="form-group required">
-                <label class="col-sm-2 control-label" for="raypay_acceptor_code"><?php echo $text_acceptor_code; ?></label>
+                <label class="col-sm-2 control-label" for="raypay_marketing_id"><?php echo $text_marketing_id; ?></label>
                 <div class="col-sm-10">
-                  <input name="raypay_acceptor_code" type="text" value="<?php echo $raypay_acceptor_code; ?>" class="form-control" />
-                  <?php if (!empty($error_acceptor_code)) : ?>
-                    <div class="text-danger"><?php echo $error_acceptor_code; ?></div>
+                  <input name="raypay_marketing_id" type="text" value="<?php echo $raypay_marketing_id; ?>" class="form-control" />
+                  <?php if (!empty($error_marketing_id)) : ?>
+                    <div class="text-danger"><?php echo $error_marketing_id; ?></div>
                   <?php endif; ?>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-sandbox"><?php echo $text_sandbox ?></label>
+                <div class="col-sm-10">
+                  <select name="raypay_sandbox" id="input-sandbox" class="form-control">
+                    <option value="no" <?php if ($raypay_sandbox == 'no') echo 'selected="selected"'?>><?php echo $entry_sandbox_no ?></option>
+                    <option value="yes" <?php if ($raypay_sandbox == 'yes') echo 'selected="selected"'?>><?php echo $entry_sandbox_yes ?></option>
+                  </select>
+                  <span><?php echo $text_sandbox_help ?></span>
                 </div>
               </div>
               <div class="form-group">

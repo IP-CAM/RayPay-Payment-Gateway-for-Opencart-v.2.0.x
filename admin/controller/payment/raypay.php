@@ -40,13 +40,17 @@ class ControllerPaymentRayPay extends Controller
         $data['text_sort_order'] = $this->language->get('text_sort_order');
         
 		$data['text_user_id'] = $this->language->get('text_user_id');
-		$data['text_acceptor_code'] = $this->language->get('text_acceptor_code');
+		$data['text_marketing_id'] = $this->language->get('text_marketing_id');
+        $data['text_sandbox'] = $this->language->get('text_sandbox');
+        $data['text_sandbox_help'] = $this->language->get('text_sandbox_help');
         $data['text_status'] = $this->language->get('text_status');
         $data['text_order_status'] = $this->language->get('text_order_status');
         $data['text_order_status'] = $this->language->get('text_order_status');
 
         $data['entry_payment_successful_message_default'] = $this->language->get('entry_payment_successful_message_default');
         $data['entry_payment_failed_message_default'] = $this->language->get('entry_payment_failed_message_default');
+        $data['entry_sandbox_yes'] = $this->language->get('entry_sandbox_yes');
+        $data['entry_sandbox_no'] = $this->language->get('entry_sandbox_no');
         $data['text_successful_message_help'] = $this->language->get('text_successful_message_help');
         $data['text_failed_message_help'] = $this->language->get('text_failed_message_help');
 
@@ -95,13 +99,13 @@ class ControllerPaymentRayPay extends Controller
 
 			$data['error_user_id'] = false;
 		}
-		if (isset($this->error['acceptor_code'])) {
+		if (isset($this->error['marketing_id'])) {
 
-			$data['error_acceptor_code'] = $this->error['acceptor_code'];
+			$data['error_marketing_id'] = $this->error['marketing_id'];
 
 		} else {
 
-			$data['error_acceptor_code'] = false;
+			$data['error_marketing_id'] = false;
 		}
 
 		if (isset($this->request->post['user_id'])) {
@@ -112,14 +116,23 @@ class ControllerPaymentRayPay extends Controller
 
 			$data['raypay_user_id'] = $this->config->get('raypay_user_id');
 		}
-		if (isset($this->request->post['acceptor_code'])) {
+		if (isset($this->request->post['marketing_id'])) {
 
-			$data['raypay_acceptor_code'] = $this->request->post['raypay_acceptor_code'];
+			$data['raypay_marketing_id'] = $this->request->post['raypay_marketing_id'];
 
 		} else {
 
-			$data['raypay_acceptor_code'] = $this->config->get('raypay_acceptor_code');
+			$data['raypay_marketing_id'] = $this->config->get('raypay_marketing_id');
 		}
+
+        if (isset($this->request->post['raypay_sandbox'])) {
+
+            $data['raypay_sandbox'] = $this->request->post['raypay_sandbox'];
+
+        } else {
+
+            $data['raypay_sandbox'] = $this->config->get('raypay_sandbox');
+        }
        
 
 		if (isset($this->request->post['raypay_order_status_id'])) {
@@ -192,11 +205,11 @@ class ControllerPaymentRayPay extends Controller
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 
-		if (!$this->request->post['raypay_user_id'] || !$this->request->post['raypay_acceptor_code']) {
+		if (!$this->request->post['raypay_user_id'] || !$this->request->post['raypay_marketing_id']) {
 
 			$this->error['warning'] = $this->language->get('error_validate');
 			$this->error['user_id'] = $this->language->get('error_user_id');
-			$this->error['acceptor_code'] = $this->language->get('error_acceptor_code');
+			$this->error['marketing_id'] = $this->language->get('error_marketing_id');
 		}
 
 		if (!$this->error) {
